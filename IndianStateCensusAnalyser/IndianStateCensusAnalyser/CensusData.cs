@@ -31,5 +31,12 @@ namespace IndianState
             this.area = Convert.ToInt32(area);
             this.density = Convert.ToInt32(density);
         }
+        public StateCensusData(CensusCode indianState)
+        {
+            this.stateName = indianState.stateName;
+            this.serialNumber = indianState.serialNumber;
+            this.tin = indianState.tin;
+            this.stateCode = indianState.stateCode;
+        }
     }
 }

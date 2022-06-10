@@ -66,5 +66,52 @@ namespace IndianState
             CensusAnalyserException exception = Assert.Throws<CensusAnalyserException>(() => censusAnalyser.LoadCensusData(folderPath + invalidHeaderState, "State,Population,AreaInSqKm,DensityPerSqKm"));
             Assert.AreEqual(CensusAnalyserException.ExceptionType.INCORRECT_HEADER, exception.type);
         }
+        /// <summary>
+        /// TC 2.1 - Check to ensure the Number of Record matches or not
+        /// </summary>
+        [Test]
+        public void Given_CSVFile_EnsureThe_NumberOfRecordAreMatch_Code()
+        {
+            censusAnalyser.datamap = censusAnalyser.LoadCensusData(folderPath + validFileStateCode, "SerialNumber,StateName,Tin,StateCode");
+            Assert.AreEqual(37, censusAnalyser.datamap.Count);
+        }
+        /// <summary>
+        /// TC 2.2- Check Given File is Exist or Not
+        /// </summary>
+        [Test]
+        public void Given_IncorrectCSVFileName_ReturnCustomException_Code()
+        {
+            CensusAnalyserException exception = Assert.Throws<CensusAnalyserException>(() => censusAnalyser.LoadCensusData(folderPath + validFileStateCode + "Txt", "SerialNumber,StateName,Tin,StateCode"));
+            Assert.AreEqual(CensusAnalyserException.ExceptionType.FILE_NOT_EXIST, exception.type);
+        }
+        /// <summary>
+        /// TC 2.3- Check given File is Contains Proper extension or not
+        /// </summary>
+        [Test]
+        public void Given_IncorrectFileExtension_ReturnCustomException_Code()
+        {
+            CensusAnalyserException exception = Assert.Throws<CensusAnalyserException>(() => censusAnalyser.LoadCensusData(folderPath + invalideExtensionFileState, "SerialNumber,StateName,Tin,StateCode"));
+            Assert.AreEqual(CensusAnalyserException.ExceptionType.IMPROPER_EXTENSION, exception.type);
+
+        }
+        /// <summary>
+        /// TC 2.4- Check the Proper delimiter is used or not
+        /// </summary> 
+        [Test]
+        public void Given_IncorrectDelimiter_ReturnCustomException_Code()
+        {
+            CensusAnalyserException exception = Assert.Throws<CensusAnalyserException>(() => censusAnalyser.LoadCensusData(folderPath + invalidDelimiterFileStateCode, "SerialNumber,StateName,Tin,StateCode"));
+            Assert.AreEqual(CensusAnalyserException.ExceptionType.DELIMITER_NOT_FOUND, exception.type);
+        }
+        /// <summary>
+        /// TC 2.5- Check in CSV file the Header is correct or not
+        /// </summary>
+        [Test]
+        public void Given_IncorrectHeader_ReturnCustomException_Code()
+        {
+            CensusAnalyserException exception = Assert.Throws<CensusAnalyserException>(() => censusAnalyser.LoadCensusData(folderPath + invalidHeaderStateCode, "SerialNumber,StateName,Tin,StateCode"));
+            Assert.AreEqual(CensusAnalyserException.ExceptionType.INCORRECT_HEADER, exception.type);
+        }
+
     }
 }

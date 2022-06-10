@@ -44,6 +44,9 @@ namespace IndianState
                     throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.DELIMITER_NOT_FOUND, "Delimmiter not found");
                 }
                 string[] column = row.Split(',');
+                if (csvFilePath.Contains("IndiaStateCode"))
+                    datamap.Add(column[0], new StateCensusData(new CensusCode(column[0], column[1], column[2], column[3])));
+                else
                     datamap.Add(column[0], new StateCensusData(column[0], column[1], column[2], column[3]));
             }
             return datamap;
