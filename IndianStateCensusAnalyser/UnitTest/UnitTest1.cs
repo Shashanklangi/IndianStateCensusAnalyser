@@ -10,7 +10,7 @@ namespace IndianState
         string validFileStateCode = "IndiaStateCode.csv";
         string invalideExtensionFileState = "IndiaStateCode.txt";
         string invalidDelimiterFileState = "DelimiterIndiaStateCensusData.csv";
-        string invalidDelimiterFileStateCode = "DelimiterIndiaStateCensusDataCode.csv";
+        string invalidDelimiterFileStateCode = "DelimiterIndiaStateCode.csv";
         string invalidHeaderState = "WrongIndiaStateCensusData.csv";
         string invalidHeaderStateCode = "WrongIndiaStateCode.csv";
         CensusAnalyser censusAnalyser;
@@ -72,7 +72,7 @@ namespace IndianState
         [Test]
         public void Given_CSVFile_EnsureThe_NumberOfRecordAreMatch_Code()
         {
-            censusAnalyser.datamap = censusAnalyser.LoadCensusData(folderPath + validFileStateCode, "SerialNumber,StateName,Tin,StateCode");
+            censusAnalyser.datamap = censusAnalyser.LoadCensusData(folderPath + validFileStateCode, "SrNo,State Name,TIN,StateCode");
             Assert.AreEqual(37, censusAnalyser.datamap.Count);
         }
         /// <summary>
@@ -81,7 +81,7 @@ namespace IndianState
         [Test]
         public void Given_IncorrectCSVFileName_ReturnCustomException_Code()
         {
-            CensusAnalyserException exception = Assert.Throws<CensusAnalyserException>(() => censusAnalyser.LoadCensusData(folderPath + validFileStateCode + "Txt", "SerialNumber,StateName,Tin,StateCode"));
+            CensusAnalyserException exception = Assert.Throws<CensusAnalyserException>(() => censusAnalyser.LoadCensusData(folderPath + validFileStateCode + "Txt", "SrNo,State Name,TIN,StateCode"));
             Assert.AreEqual(CensusAnalyserException.ExceptionType.FILE_NOT_EXIST, exception.type);
         }
         /// <summary>
@@ -90,7 +90,7 @@ namespace IndianState
         [Test]
         public void Given_IncorrectFileExtension_ReturnCustomException_Code()
         {
-            CensusAnalyserException exception = Assert.Throws<CensusAnalyserException>(() => censusAnalyser.LoadCensusData(folderPath + invalideExtensionFileState, "SerialNumber,StateName,Tin,StateCode"));
+            CensusAnalyserException exception = Assert.Throws<CensusAnalyserException>(() => censusAnalyser.LoadCensusData(folderPath + invalideExtensionFileState, "SrNo,State Name,TIN,StateCode"));
             Assert.AreEqual(CensusAnalyserException.ExceptionType.IMPROPER_EXTENSION, exception.type);
 
         }
@@ -100,7 +100,7 @@ namespace IndianState
         [Test]
         public void Given_IncorrectDelimiter_ReturnCustomException_Code()
         {
-            CensusAnalyserException exception = Assert.Throws<CensusAnalyserException>(() => censusAnalyser.LoadCensusData(folderPath + invalidDelimiterFileStateCode, "SerialNumber,StateName,Tin,StateCode"));
+            CensusAnalyserException exception = Assert.Throws<CensusAnalyserException>(() => censusAnalyser.LoadCensusData(folderPath + invalidDelimiterFileStateCode, "SrNo,State Name,TIN,StateCode"));
             Assert.AreEqual(CensusAnalyserException.ExceptionType.DELIMITER_NOT_FOUND, exception.type);
         }
         /// <summary>
@@ -109,7 +109,7 @@ namespace IndianState
         [Test]
         public void Given_IncorrectHeader_ReturnCustomException_Code()
         {
-            CensusAnalyserException exception = Assert.Throws<CensusAnalyserException>(() => censusAnalyser.LoadCensusData(folderPath + invalidHeaderStateCode, "SerialNumber,StateName,Tin,StateCode"));
+            CensusAnalyserException exception = Assert.Throws<CensusAnalyserException>(() => censusAnalyser.LoadCensusData(folderPath + invalidHeaderStateCode, "SrNo,State Name,TIN,StateCode"));
             Assert.AreEqual(CensusAnalyserException.ExceptionType.INCORRECT_HEADER, exception.type);
         }
 

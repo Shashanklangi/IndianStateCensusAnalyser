@@ -34,7 +34,7 @@ namespace IndianState
             string[] censusdata = File.ReadAllLines(csvFilePath);
             if (censusdata[0] != dataHeaders)
             {
-                throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.INCORRECT_HEADER, " Incorrect Header");
+                throw new CensusAnalyserException(CensusAnalyserException.ExceptionType.INCORRECT_HEADER, "Incorrect Header");
             }
             //Check for delimiter is available or not for this skippinh header chck all the data
             foreach (string row in censusdata.Skip(1))
